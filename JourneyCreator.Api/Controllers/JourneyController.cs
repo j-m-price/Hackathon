@@ -53,7 +53,7 @@ namespace JourneyCreator.Api.Controllers
         }
 
         [HttpGet("GetSpecificByProduct/{product}/{id}")]
-        public Journey Get(string product, int id)
+        public Journey Get(string product, string id)
         {
             return _retrievalService.GetJourneyByProductAndIdAsync(product, id);
         }

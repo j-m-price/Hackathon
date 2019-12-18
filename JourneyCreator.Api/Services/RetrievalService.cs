@@ -30,7 +30,7 @@ namespace JourneyCreator.Api.Services
             };
         }
 
-        public Journey GetJourneyByProductAndIdAsync(string product, int id)
+        public Journey GetJourneyByProductAndIdAsync(string product, string id)
         {
             return new Journey
             {

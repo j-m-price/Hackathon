@@ -10,6 +10,6 @@ namespace JourneyCreator.Core.Interfaces
 
         Journey GetJourneyByProductAsync(string product);
 
-        Journey GetJourneyByProductAndIdAsync(string product, int id);
+        Journey GetJourneyByProductAndIdAsync(string product, string id);
     }
 }
