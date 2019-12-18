@@ -1,9 +1,10 @@
-﻿using JourneyCreator.Core.Models;
+﻿using System.Collections.Generic;
+using JourneyCreator.Core.Models;
 
 namespace JourneyCreator.Core.Interfaces
 {
     public interface IValidationService
     {
-        bool Validate(Journey journey);
+        List<string> Validate(Journey journey);
     }
 }

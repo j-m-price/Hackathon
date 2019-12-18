@@ -33,7 +33,8 @@ namespace JourneyCreator.Api.Controllers
         [HttpPost("Create")]
         public async Task<ActionResult> Create(Journey journey)
         {
-            if (!_validationService.Validate(journey)) return BadRequest();
+            var errors = _validationService.Validate(journey);
+            if (errors.Count > 0) return BadRequest(errors);
 
             //var success = await _creationService.SaveNewJourneyAsync(journey);
 
