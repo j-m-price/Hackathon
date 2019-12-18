@@ -8,7 +8,7 @@ namespace JourneyCreator.Api.Services
 {
     public class RetrievalService : IRetrievalService
     {
-        public IEnumerable<Journey> GetLatestForAllProducts()
+        public IEnumerable<Journey> GetLatestJourneyForAllProducts()
         {
             return new List<Journey>();
         }

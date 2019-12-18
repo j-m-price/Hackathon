@@ -6,7 +6,7 @@ namespace JourneyCreator.Core.Interfaces
 {
     public interface IRetrievalService
     {
-        IEnumerable<Journey> GetLatestForAllProducts();
+        IEnumerable<Journey> GetLatestJourneyForAllProducts();
 
         Journey GetJourneyByProductAsync(string product);
 
