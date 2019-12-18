@@ -33,7 +33,7 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = 0,
                             Publisher = "James Price",
-                            ProductId = 6,
+                            Product = "Pet",
                             Pages = new List<Page>(),
                             GTMSettings = new GTMSettings()
                         },
@@ -46,7 +46,7 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = 1,
                             Publisher = "",
-                            ProductId = 6,
+                            Product = "Pet",
                             Pages = new List<Page>(),
                             GTMSettings = new GTMSettings()
                         },
@@ -59,7 +59,7 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = 1,
                             Publisher = "James Price",
-                            ProductId = 0,
+                            Product = "",
                             Pages = new List<Page>(),
                             GTMSettings = new GTMSettings()
                         },
@@ -72,7 +72,7 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = 1,
                             Publisher = "James Price",
-                            ProductId = 0,
+                            Product = "Pet",
                             Pages = new List<Page>(),
                             GTMSettings = null
                         },
@@ -83,7 +83,7 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = 1,
                             Publisher = "James Price",
-                            ProductId = 0,
+                            Product = "Pet",
                             Pages = new List<Page>(),
                             GTMSettings = new GTMSettings
                             {
@@ -109,7 +109,7 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = 1,
                             Publisher = "James Price",
-                            ProductId = 6,
+                            Product = "Pet",
                             Pages = new List<Page>(),
                             GTMSettings = new GTMSettings
                             {

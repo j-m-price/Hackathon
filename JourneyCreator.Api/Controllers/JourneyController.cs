@@ -37,7 +37,7 @@ namespace JourneyCreator.Api.Controllers
 
             //var success = await _creationService.SaveNewJourneyAsync(journey);
 
-            return Ok();
+            return Ok(journey);
         }
 
         [HttpGet]
