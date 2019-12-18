@@ -12,6 +12,6 @@ namespace JourneyCreator.Core.Models
         public string HelpText { get; set; }
         public bool Required { get; set; }
         public IEnumerable<Option> Options { get; set; }
-        public DisplaySettings DisplaySettings { get; set; }
+        //public DisplaySettings DisplaySettings { get; set; }
     }
 }
