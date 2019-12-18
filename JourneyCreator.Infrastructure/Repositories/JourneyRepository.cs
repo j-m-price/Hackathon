@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using JourneyCreator.Core.Interfaces;
 using JourneyCreator.Core.Models;
@@ -56,11 +57,19 @@ namespace JourneyCreator.Infrastructure.Repositories
             await this._container.CreateItemAsync<Journey>(journey, new PartitionKey(journey.Id));
             return true;
         }
-
-        public Task<bool> SaveNewJourney(Journey journey)
+        public async Task<bool> SaveNewJourney(Journey journey)
         {
-            throw new System.NotImplementedException();
-        }
+            try
+            {
+                ItemResponse<Journey> journeyResponse = await this._container.ReadItemAsync<Journey>(journey.Id.ToString(), new PartitionKey(journey.ProductId));
+            }
+            catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+            {
+                ItemResponse<Journey> journeyResponse = await this._container.CreateItemAsync(journey, new PartitionKey(journey.ProductId));
+            }
+
+            return true;
+        }        
 
         public async Task<IEnumerable<Journey>> GetAsync()
         {
