@@ -43,7 +43,7 @@ namespace JourneyCreator.Api.Controllers
         [HttpGet]
         public IEnumerable<Journey> Get()
         {
-            return _retrievalService.GetLatestForAllProducts();
+            return _retrievalService.GetLatestJourneyForAllProducts();
         }
 
         [HttpGet("GetLatestByProduct/{product}")]
