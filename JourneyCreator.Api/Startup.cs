@@ -37,6 +37,7 @@ namespace JourneyCreator.Api
 
             // DI
             services.AddScoped<ICreationService, CreationService>();
+            services.AddScoped<IRetrievalService, RetrievalService>();
             services.AddScoped<IValidationService, ValidationService>();
         }
 

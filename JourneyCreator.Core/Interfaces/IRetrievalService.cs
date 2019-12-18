@@ -6,10 +6,10 @@ namespace JourneyCreator.Core.Interfaces
 {
     public interface IRetrievalService
     {
-        Task<IEnumerable<Journey>> Get();
+        IEnumerable<Journey> GetLatestForAllProducts();
 
-        Task<Journey> GetJourneyByProductAsync(string product);
+        Journey GetJourneyByProductAsync(string product);
 
-        Task<Journey> GetJourneyByProductAndIdAsync(string product, int id);
+        Journey GetJourneyByProductAndIdAsync(string product, int id);
     }
 }
