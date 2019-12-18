@@ -42,5 +42,10 @@ namespace JourneyCreator.Core.Services
             // if no error, return true -- return deleted success message?
             throw new NotImplementedException();
         }
+
+        public Task<bool> SaveNewJourneyAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

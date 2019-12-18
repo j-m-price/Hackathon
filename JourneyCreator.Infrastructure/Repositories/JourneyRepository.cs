@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using JourneyCreator.Core.Interfaces;
 using JourneyCreator.Core.Models;
 using Microsoft.Azure.Cosmos;
@@ -56,10 +57,30 @@ namespace JourneyCreator.Infrastructure.Repositories
             };
         }
 
+        public Task<Journey> GetJourneyByProductAndIdAsync(string product, int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<Journey> GetJourneyByProductAsync(string product)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<bool> SaveAsync(Journey journey)
         {
             await this._container.CreateItemAsync<Journey>(journey, new PartitionKey(journey.Id));
             return true;
+        }
+
+        public Task<bool> SaveNewJourney(Journey journey)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        Task<IEnumerable<Journey>> IJourneyRepository.GetAsync()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

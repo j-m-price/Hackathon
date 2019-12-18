@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using JourneyCreator.Core.Models;
+using System.Collections.Generic;
 
 namespace JourneyCreator.Core.Interfaces
 {
