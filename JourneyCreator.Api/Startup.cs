@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using JourneyCreator.Core.Interfaces;
 using JourneyCreator.Core.Services;
 using JourneyCreator.Api.Services;
+using JourneyCreator.Infrastructure.Repositories;
 
 namespace JourneyCreator.Api
 {
@@ -38,6 +39,7 @@ namespace JourneyCreator.Api
             // DI
             services.AddScoped<ICreationService, CreationService>();
             services.AddScoped<IValidationService, ValidationService>();
+            services.AddScoped<IJourneyRepository, JourneyRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

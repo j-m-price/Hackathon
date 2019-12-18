@@ -15,17 +15,20 @@ namespace JourneyCreator.Api.Controllers
     {
         private readonly ICreationService _creationService;
         private readonly IValidationService _validationService;
+        private readonly IJourneyRepository _journeyRepository;
 
         private readonly ILogger<JourneyController> _logger;
 
         public JourneyController(
             ILogger<JourneyController> logger,
             ICreationService creationService,
-            IValidationService validationService)
+            IValidationService validationService,
+            IJourneyRepository journeyRepository)
         {
             _logger = logger;
             _creationService = creationService;
             _validationService = validationService;
+            _journeyRepository = journeyRepository;
         }
 
         [HttpPost("Create")]
@@ -39,11 +42,13 @@ namespace JourneyCreator.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Journey> Get()
+        public async Task<ActionResult<IEnumerable<Journey>>> GetAsync()
         {
             // Call new service
+            var journeys = await _journeyRepository.GetAsync();
+
             // return list of latest journeys
-            return new List<Journey>();
+            return Ok(journeys);
         }
 
         [HttpGet("GetLatestByProduct/{product}")]
@@ -61,7 +66,7 @@ namespace JourneyCreator.Api.Controllers
         public Journey Get(string product, int journeyId)
         {
             // Call new service
-            // return list of latest journeys
+           // return list of latest journeys
             return new Journey
             {
                 Publisher = product,
