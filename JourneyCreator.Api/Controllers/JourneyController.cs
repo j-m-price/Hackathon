@@ -36,11 +36,11 @@ namespace JourneyCreator.Api.Controllers
             // if (!_validationService.Validate(journey)) return BadRequest();
             journey.Id = Guid.NewGuid().ToString(); 
 
-           var createdJourny = await _creationService.SaveNewJourneyAsync(journey);
+           var createdJourney = await _creationService.SaveNewJourneyAsync(journey);
 
             //TODO get the below working to return a 201, not an OK. To be more RESTful
             //return CreatedAtRoute("GetSpecificByProduct", new { product = journey.Product, id = journey.Id }, journey);
-            return Ok(createdJourny);
+            return Ok(createdJourney);
         }
 
         [HttpGet]
