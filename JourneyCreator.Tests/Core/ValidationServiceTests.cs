@@ -31,7 +31,7 @@ namespace JourneyCreator.Tests.Core
                     new object[] {
                         new Journey
                         {
-                            Id = 0,
+                            Id = "0",
                             Publisher = "James Price",
                             Product = "Pet",
                             Pages = new List<Page>(),
@@ -44,7 +44,7 @@ namespace JourneyCreator.Tests.Core
                     new object[] {
                         new Journey
                         {
-                            Id = 1,
+                            Id = "1",
                             Publisher = "",
                             Product = "Pet",
                             Pages = new List<Page>(),
@@ -57,7 +57,7 @@ namespace JourneyCreator.Tests.Core
                     new object[] {
                         new Journey
                         {
-                            Id = 1,
+                            Id = "1",
                             Publisher = "James Price",
                             Product = "",
                             Pages = new List<Page>(),
@@ -70,7 +70,7 @@ namespace JourneyCreator.Tests.Core
                     new object[] {
                         new Journey
                         {
-                            Id = 1,
+                            Id = "1",
                             Publisher = "James Price",
                             Product = "Pet",
                             Pages = new List<Page>(),
@@ -81,7 +81,7 @@ namespace JourneyCreator.Tests.Core
                     new object[] {
                         new Journey
                         {
-                            Id = 1,
+                            Id = "1",
                             Publisher = "James Price",
                             Product = "Pet",
                             Pages = new List<Page>(),
@@ -107,7 +107,7 @@ namespace JourneyCreator.Tests.Core
                     new object[] {
                         new Journey
                         {
-                            Id = 1,
+                            Id = "1",
                             Publisher = "James Price",
                             Product = "Pet",
                             Pages = new List<Page>(),

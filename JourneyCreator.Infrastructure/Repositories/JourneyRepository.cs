@@ -27,21 +27,6 @@ namespace JourneyCreator.Infrastructure.Repositories
             return true;
         }
 
-        public async Task<Journey> GetByIdAsync(int journeyId)
-        {
-            try
-            {
-                // need to update to get journey for specific product.
-                // again, make id string??
-                ItemResponse<Journey> response = await this._container.ReadItemAsync<Journey>(journeyId.ToString(), new PartitionKey(journeyId));
-                return response.Resource;
-            }
-            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                return null;
-            };
-        }
-
         public Task<Journey> GetJourneyByProductAndIdAsync(string product, int id)
         {
             throw new System.NotImplementedException();
@@ -61,11 +46,11 @@ namespace JourneyCreator.Infrastructure.Repositories
         {
             try
             {
-                ItemResponse<Journey> journeyResponse = await this._container.ReadItemAsync<Journey>(journey.Id.ToString(), new PartitionKey(journey.ProductId));
+                ItemResponse<Journey> journeyResponse = await this._container.ReadItemAsync<Journey>(journey.Id.ToString(), new PartitionKey(journey.Id));
             }
             catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
             {
-                ItemResponse<Journey> journeyResponse = await this._container.CreateItemAsync(journey, new PartitionKey(journey.ProductId));
+                ItemResponse<Journey> journeyResponse = await this._container.CreateItemAsync(journey, new PartitionKey(journey.Id));
             }
 
             return true;
