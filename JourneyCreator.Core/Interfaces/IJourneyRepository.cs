@@ -15,6 +15,6 @@ namespace JourneyCreator.Core.Interfaces
 
         // If collection exists, save
         // If not, create that collection and then save
-        Task<bool> SaveNewJourney(Journey journey);
+        Task<Journey> SaveNewJourney(Journey journey);
     }
 }

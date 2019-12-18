@@ -13,10 +13,10 @@ namespace JourneyCreator.Api.Services
         {
             _journeyRepository = journeyRepository;
         }
-        public async Task<bool> SaveNewJourneyAsync(Journey journey)
+        public async Task<Journey> SaveNewJourneyAsync(Journey journey)
         {
-            await _journeyRepository.SaveNewJourney(journey);
-            return true;
+            var createdJourney = await _journeyRepository.SaveNewJourney(journey);
+            return createdJourney;
         }
     }
 }

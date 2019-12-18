@@ -7,6 +7,6 @@ namespace JourneyCreator.Core.Interfaces
     {
         // Calls core validation
         // Then calls repo to save
-        Task<bool> SaveNewJourneyAsync(Journey journey);
+        Task<Journey> SaveNewJourneyAsync(Journey journey);
     }
 }
