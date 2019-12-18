@@ -26,6 +26,10 @@ namespace JourneyCreator.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Journey Creator API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +39,12 @@ namespace JourneyCreator.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndPoint("/swagger/v1/swagger.json", "Journey Creator API v1");
+            });
 
             app.UseHttpsRedirection();
 
