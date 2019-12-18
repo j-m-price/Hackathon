@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using JourneyCreator.Core.Interfaces;
+using JourneyCreator.Core.Services;
+using JourneyCreator.Api.Services;
 
 namespace JourneyCreator.Api
 {
@@ -27,9 +30,14 @@ namespace JourneyCreator.Api
         {
             services.AddControllers();
 
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Journey Creator API", Version = "v1" });
-            });
+            // services.AddSwaggerGen(c => {
+            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Journey Creator API", Version = "v1" });
+            // });
+
+
+            // DI
+            services.AddScoped<ICreationService, CreationService>();
+            services.AddScoped<IValidationService, ValidationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +48,11 @@ namespace JourneyCreator.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
+            // app.UseSwagger();
 
-            app.UseSwaggerUI(c => {
-                c.SwaggerEndPoint("/swagger/v1/swagger.json", "Journey Creator API v1");
-            });
+            // app.UseSwaggerUI(c => {
+            //     c.SwaggerEndPoint("/swagger/v1/swagger.json", "Journey Creator API v1");
+            // });
 
             app.UseHttpsRedirection();
 

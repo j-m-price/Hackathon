@@ -11,10 +11,10 @@ namespace JourneyCreator.Core.Services
         {
             // we'll want to return a custom error type here.
             // Bool is just a placeholder obviously.
-            if (!ValidateJourneyId(journey.Id)) return false;
-            if (!ValidateProductId(journey.ProductId)) return false;
-            if (!ValidatePublisher(journey.Publisher)) return false;
-            if (!ValidateGTMSettings(journey.GTMSettings)) return false;
+            // if (!ValidateJourneyId(journey.Id)) return false;
+            // if (!ValidateProductId(journey.ProductId)) return false;
+            // if (!ValidatePublisher(journey.Publisher)) return false;
+            // if (!ValidateGTMSettings(journey.GTMSettings)) return false;
 
             return true;
         }

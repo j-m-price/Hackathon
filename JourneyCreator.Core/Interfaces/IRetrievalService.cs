@@ -1,0 +1,15 @@
+﻿using System.Threading.Tasks;
+using JourneyCreator.Core.Models;
+using System.Collections.Generic;
+
+namespace JourneyCreator.Core.Interfaces
+{
+    public interface IRetrievalService
+    {
+        Task<IEnumerable<Journey>> Get();
+
+        Task<Journey> GetJourneyByProductAsync(string product);
+
+        Task<Journey> GetJourneyByProductAndIdAsync(string product, int id);
+    }
+}

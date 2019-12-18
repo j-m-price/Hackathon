@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JourneyCreator.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using JourneyCreator.Core.Interfaces;
 
 namespace JourneyCreator.Api.Controllers
 {
@@ -12,20 +13,29 @@ namespace JourneyCreator.Api.Controllers
     [Route("[controller]")]
     public class JourneyController : ControllerBase
     {
+        private readonly ICreationService _creationService;
+        private readonly IValidationService _validationService;
 
         private readonly ILogger<JourneyController> _logger;
 
-        public JourneyController(ILogger<JourneyController> logger)
+        public JourneyController(
+            ILogger<JourneyController> logger,
+            ICreationService creationService,
+            IValidationService validationService)
         {
             _logger = logger;
+            _creationService = creationService;
+            _validationService = validationService;
         }
 
         [HttpPost("Create")]
-        public ActionResult Create(Journey journey)
+        public async Task<ActionResult> Create(Journey journey)
         {
-            // Call new service - Create
-            // return journeyId or list of errors
-            return Ok("hi");
+            if (!_validationService.Validate(journey)) return BadRequest();
+
+            //var success = await _creationService.SaveNewJourneyAsync(journey);
+
+            return Ok();
         }
 
         [HttpGet]
