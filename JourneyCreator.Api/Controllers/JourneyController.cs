@@ -15,20 +15,19 @@ namespace JourneyCreator.Api.Controllers
     {
         private readonly ICreationService _creationService;
         private readonly IValidationService _validationService;
-        private readonly IJourneyRepository _journeyRepository;
-
+        private readonly IRetrievalService _retrievalService;
         private readonly ILogger<JourneyController> _logger;
 
         public JourneyController(
             ILogger<JourneyController> logger,
             ICreationService creationService,
             IValidationService validationService,
-            IJourneyRepository journeyRepository)
+            IRetrievalService retrievalService)
         {
             _logger = logger;
             _creationService = creationService;
             _validationService = validationService;
-            _journeyRepository = journeyRepository;
+            _retrievalService = retrievalService;
         }
 
         [HttpPost("Create")]
@@ -42,36 +41,21 @@ namespace JourneyCreator.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Journey>>> GetAsync()
+        public async Task<IEnumerable<Journey>> GetAsync()
         {
-            // Call new service
-            var journeys = await _journeyRepository.GetAsync();
-
-            // return list of latest journeys
-            return Ok(journeys);
+            return await _retrievalService.GetLatestJourneyForAllProductsAsync();
         }
 
         [HttpGet("GetLatestByProduct/{product}")]
         public Journey Get(string product)
         {
-            // Call new service
-            // return list of latest journeys
-            return new Journey
-            {
-                Publisher = product
-            };
+            return _retrievalService.GetJourneyByProductAsync(product);
         }
 
-        [HttpGet("GetSpecificByProduct/{product}/{journeyId}")]
-        public Journey Get(string product, int journeyId)
+        [HttpGet("GetSpecificByProduct/{product}/{id}")]
+        public Journey Get(string product, int id)
         {
-            // Call new service
-           // return list of latest journeys
-            return new Journey
-            {
-                Publisher = product,
-                Id = journeyId
-            };
+            return _retrievalService.GetJourneyByProductAndIdAsync(product, id);
         }
     }
 }
