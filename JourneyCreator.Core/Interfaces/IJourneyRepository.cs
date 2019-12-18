@@ -5,9 +5,15 @@ namespace JourneyCreator.Core.Interfaces
 {
     public interface IJourneyRepository
     {
-        Task<Journey> GetAsync();
-        Task<Journey> GetByIdAsync(int journeyId);
-        Task<bool> SaveAsync(Journey journey);
-        Task<bool> DeleteAsync(int journeyId);
+        // get latest for all journeys
+        Task<IEnumerable<Journey>> GetAsync();
+        // get latest journey for product
+        Task<Journey> GetJourneyByProductAsync(string product);
+        // get specific joureny for product
+        Task<Journey> GetJourneyByProductAndIdAsync(string product, int id);
+
+        // If collection exists, save
+        // If not, create that collection and then save
+        Task<bool> SaveNewJourney(Journey journey);
     }
 }

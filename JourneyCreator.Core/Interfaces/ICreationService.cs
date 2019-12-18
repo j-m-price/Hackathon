@@ -4,9 +4,8 @@ namespace JourneyCreator.Core.Interfaces
 {
     public interface ICreationService
     {
-        Task<bool> CreateAsync();
-        Task<bool> DeleteAsync();
-        Task<bool> ActivateAsync();
-        Task<bool> DeactivateAsync();
+        // Calls core validation
+        // Then calls repo to save
+        Task<bool> SaveNewJourneyAsync();
     }
 }
