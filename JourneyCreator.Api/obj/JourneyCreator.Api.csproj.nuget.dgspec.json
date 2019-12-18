@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj": {}
+    "c:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj": {
+    "c:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj",
+        "projectUniqueName": "c:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj",
         "projectName": "JourneyCreator.Api",
-        "projectPath": "C:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj",
+        "projectPath": "c:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\JourneyCreator.Api.csproj",
         "packagesPath": "C:\\Users\\JamesPrice\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\obj\\",
+        "outputPath": "c:\\Users\\JamesPrice\\Desktop\\HackDay\\Hackathon\\JourneyCreator.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
