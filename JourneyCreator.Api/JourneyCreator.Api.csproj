@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JourneyCreator.Core\JourneyCreator.Core.csproj" />
+    <ProjectReference Include="..\JourneyCreator.Infrastructure\JourneyCreator.Infrastructure.csproj" />
     <PackageReference Include="SwashBuckle.AspNetCore.MicrosoftExtensions" Version="0.5.0" />
   </ItemGroup>
 

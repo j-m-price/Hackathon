@@ -10,13 +10,13 @@ namespace JourneyCreator.Infrastructure.Repositories
     {
         private Container _container;
 
-        public JourneyRepository(
-            CosmosClient dbClient,
-            string databaseName,
-            string containerName)
+        public JourneyRepository()
         {
-            this._container = dbClient.GetContainer(databaseName, containerName);
+            var client = new CosmosClient("AccountEndpoint=https://dynamic-journey.documents.azure.com:443/;AccountKey=XCDk51XzPornsqfErlDRpkReuu7IY22ATj4o16xW7SMrWdCrky2OkhM2JhRVGQiCp3wCSkgkolE2gqdTX0f0Dw==;", null);
+            this._container = client.GetContainer("journey", "journeycontainer");
         }
+
+
 
         public async Task<bool> DeleteAsync(int journeyId)
         {
@@ -24,22 +24,6 @@ namespace JourneyCreator.Infrastructure.Repositories
             // so partitionKey takes a double... but id is a string...
             await this._container.DeleteItemAsync<Journey>(journeyId.ToString(), new PartitionKey(journeyId));
             return true;
-        }
-
-        public async Task<Journey> GetAsync()
-        {
-            // need to change to get latest active journey for the product
-            var id = 0;
-            try
-            {
-                // again, make id string??
-                ItemResponse<Journey> response = await this._container.ReadItemAsync<Journey>(id.ToString(), new PartitionKey(id));
-                return response.Resource;
-            }
-            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                return null;
-            };
         }
 
         public async Task<Journey> GetByIdAsync(int journeyId)
@@ -78,9 +62,21 @@ namespace JourneyCreator.Infrastructure.Repositories
             throw new System.NotImplementedException();
         }
 
-        Task<IEnumerable<Journey>> IJourneyRepository.GetAsync()
+        public async Task<IEnumerable<Journey>> GetAsync()
         {
-            throw new System.NotImplementedException();
+            var sqlQueryText = "SELECT * FROM c";
+            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
+            FeedIterator<Journey> queryResultSetIterator = this._container.GetItemQueryIterator<Journey>(queryDefinition);
+            List<Journey> journeys = new List<Journey>();
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                Microsoft.Azure.Cosmos.FeedResponse<Journey> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (Journey journey in currentResultSet)
+                {
+                    journeys.Add(journey);
+                }
+            }
+            return journeys;
         }
     }
 }

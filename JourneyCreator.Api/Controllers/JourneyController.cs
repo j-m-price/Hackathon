@@ -41,9 +41,9 @@ namespace JourneyCreator.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Journey> Get()
+        public async Task<IEnumerable<Journey>> GetAsync()
         {
-            return _retrievalService.GetLatestJourneyForAllProducts();
+            return await _retrievalService.GetLatestJourneyForAllProductsAsync();
         }
 
         [HttpGet("GetLatestByProduct/{product}")]

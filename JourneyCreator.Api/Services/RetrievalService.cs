@@ -8,9 +8,18 @@ namespace JourneyCreator.Api.Services
 {
     public class RetrievalService : IRetrievalService
     {
-        public IEnumerable<Journey> GetLatestJourneyForAllProducts()
+        IJourneyRepository _journeyRepository;
+
+        public RetrievalService(IJourneyRepository journeyRepository)
         {
-            return new List<Journey>();
+            _journeyRepository = journeyRepository;
+        }
+
+        public async Task<IEnumerable<Journey>> GetLatestJourneyForAllProductsAsync()
+        {
+            var journeys = await _journeyRepository.GetAsync();
+
+            return journeys;
         }
 
         public Journey GetJourneyByProductAsync(string product)
