@@ -7,9 +7,16 @@ namespace JourneyCreator.Api.Services
 {
     public class CreationService : ICreationService
     {
-        public Task<bool> SaveNewJourneyAsync(Journey journey)
+        IJourneyRepository _journeyRepository;
+
+        public CreationService(IJourneyRepository journeyRepository)
         {
-            throw new NotImplementedException();
+            _journeyRepository = journeyRepository;
+        }
+        public async Task<bool> SaveNewJourneyAsync(Journey journey)
+        {
+            await _journeyRepository.SaveNewJourney(journey);
+            return true;
         }
     }
 }
