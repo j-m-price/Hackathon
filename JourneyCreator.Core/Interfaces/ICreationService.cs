@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using JourneyCreator.Core.Models;
 
 namespace JourneyCreator.Core.Interfaces
 {
@@ -6,6 +7,6 @@ namespace JourneyCreator.Core.Interfaces
     {
         // Calls core validation
         // Then calls repo to save
-        Task<bool> SaveNewJourneyAsync();
+        Task<bool> SaveNewJourneyAsync(Journey journey);
     }
 }
