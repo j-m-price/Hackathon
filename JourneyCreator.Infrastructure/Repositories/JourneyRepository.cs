@@ -42,19 +42,11 @@ namespace JourneyCreator.Infrastructure.Repositories
             await this._container.CreateItemAsync<Journey>(journey, new PartitionKey(journey.Id));
             return true;
         }
-        public async Task<bool> SaveNewJourney(Journey journey)
+        public async Task<Journey> SaveNewJourney(Journey journey)
         {
-            try
-            {
-                ItemResponse<Journey> journeyResponse = await this._container.ReadItemAsync<Journey>(journey.Id.ToString(), new PartitionKey(journey.Id));
-            }
-            catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
-            {
-                ItemResponse<Journey> journeyResponse = await this._container.CreateItemAsync(journey, new PartitionKey(journey.Id));
-            }
-
-            return true;
-        }        
+            //TODO - If exists checks + get partition key saving properly
+            return await this._container.CreateItemAsync(journey);           
+        }      
 
         public async Task<IEnumerable<Journey>> GetAsync()
         {

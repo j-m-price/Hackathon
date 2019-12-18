@@ -30,15 +30,19 @@ namespace JourneyCreator.Api.Controllers
             _retrievalService = retrievalService;
         }
 
-        [HttpPost("Create")]
-        public async Task<ActionResult> Create(Journey journey)
+        [HttpPost]
+        public async Task<ActionResult<Journey>> CreateAsync(Journey journey)
         {
             var errors = _validationService.Validate(journey);
             if (errors.Count > 0) return BadRequest(errors);
 
-            //var success = await _creationService.SaveNewJourneyAsync(journey);
+            journey.Id = Guid.NewGuid().ToString(); 
 
-            return Ok(journey);
+           var createdJourney = await _creationService.SaveNewJourneyAsync(journey);
+
+            //TODO get the below working to return a 201, not an OK. To be more RESTful
+            //return CreatedAtRoute("GetSpecificByProduct", new { product = journey.Product, id = journey.Id }, journey);
+            return Ok(createdJourney);
         }
 
         [HttpGet]
@@ -53,7 +57,7 @@ namespace JourneyCreator.Api.Controllers
             return _retrievalService.GetJourneyByProductAsync(product);
         }
 
-        [HttpGet("GetSpecificByProduct/{product}/{id}")]
+        [HttpGet("GetSpecificByProduct/{product}/{id}", Name = "GetSpecificByProduct")]
         public Journey Get(string product, string id)
         {
             return _retrievalService.GetJourneyByProductAndIdAsync(product, id);
