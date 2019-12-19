@@ -29,13 +29,11 @@ namespace JourneyCreator.Api.Services
             return journeys;
         }
 
-        public Journey GetJourneyByProductAndIdAsync(string product, string id)
+        public async Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id)
         {
-            return new Journey
-            {
-                Publisher = product,
-                Id = id
-            };
+            var journeys = await _journeyRepository.GetJourneyByProductAndIdAsync(product, id);
+
+            return journeys;
         }
     }
 }

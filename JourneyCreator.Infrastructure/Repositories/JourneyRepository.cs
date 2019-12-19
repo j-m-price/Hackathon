@@ -27,9 +27,12 @@ namespace JourneyCreator.Infrastructure.Repositories
             return true;
         }
 
-        public Task<Journey> GetJourneyByProductAndIdAsync(string product, int id)
+        public async Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id)
         {
-            throw new System.NotImplementedException();
+            var sqlQueryText = $"SELECT * FROM c WHERE c.Product = '{product}' AND c.id = '{id}'";
+            var journeys = await _ExecuteIteratorQuery(sqlQueryText);
+
+            return journeys;
         }
 
         public async Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product)

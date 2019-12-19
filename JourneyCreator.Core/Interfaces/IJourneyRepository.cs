@@ -11,7 +11,7 @@ namespace JourneyCreator.Core.Interfaces
         // get latest journey for product
         Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product);
         // get specific joureny for product
-        Task<Journey> GetJourneyByProductAndIdAsync(string product, int id);
+        Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id);
 
         // If collection exists, save
         // If not, create that collection and then save

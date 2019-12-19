@@ -10,6 +10,6 @@ namespace JourneyCreator.Core.Interfaces
 
         Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product);
 
-        Journey GetJourneyByProductAndIdAsync(string product, string id);
+        Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id);
     }
 }
