@@ -50,7 +50,7 @@ namespace JourneyCreator.Core.Services
 
 
                     // we could add a max and min length attribute
-                    // and then check that if there is a min value, the mac must be higher than the min, etc.
+                    // and then check that if there is a min value, the max must be higher than the min, etc.
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace JourneyCreator.Core.Services
                 To check:
                     - settings must not be null
                     - Excluded must not be null
-                    - Frequency must not ne null
+                    - Frequency must not be null
                     - Frequency must not be whitespace only
                     - (Fill in more test cases)
             */
