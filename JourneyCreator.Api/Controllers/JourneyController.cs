@@ -52,9 +52,9 @@ namespace JourneyCreator.Api.Controllers
         }
 
         [HttpGet("GetLatestByProduct/{product}")]
-        public Journey Get(string product)
+        public async Task<IEnumerable<Journey>> Get(string product)
         {
-            return _retrievalService.GetJourneyByProductAsync(product);
+            return await _retrievalService.GetJourneyByProductAsync(product);
         }
 
         [HttpGet("GetSpecificByProduct/{product}/{id}", Name = "GetSpecificByProduct")]

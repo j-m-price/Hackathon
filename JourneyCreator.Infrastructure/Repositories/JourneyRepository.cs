@@ -32,9 +32,12 @@ namespace JourneyCreator.Infrastructure.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<Journey> GetJourneyByProductAsync(string product)
+        public async Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product)
         {
-            throw new System.NotImplementedException();
+            var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.Product = '{product}' ORDER BY c._ts DESC";
+            var journeys = await _ExecuteIteratorQuery(sqlQueryText);
+
+            return journeys;
         }
 
         public async Task<bool> SaveAsync(Journey journey)
@@ -45,12 +48,19 @@ namespace JourneyCreator.Infrastructure.Repositories
         public async Task<Journey> SaveNewJourney(Journey journey)
         {
             //TODO - If exists checks + get partition key saving properly
-            return await this._container.CreateItemAsync(journey);           
+            return await this._container.CreateItemAsync(journey);
         }      
 
         public async Task<IEnumerable<Journey>> GetAsync()
         {
             var sqlQueryText = "SELECT * FROM c";
+            var journeys = await _ExecuteIteratorQuery(sqlQueryText);
+
+            return journeys;
+        }
+
+        private async Task<IEnumerable<Journey>> _ExecuteIteratorQuery(string sqlQueryText)
+        {
             QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
             FeedIterator<Journey> queryResultSetIterator = this._container.GetItemQueryIterator<Journey>(queryDefinition);
             List<Journey> journeys = new List<Journey>();

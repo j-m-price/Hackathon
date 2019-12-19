@@ -9,7 +9,7 @@ namespace JourneyCreator.Core.Interfaces
         // get latest for all journeys
         Task<IEnumerable<Journey>> GetAsync();
         // get latest journey for product
-        Task<Journey> GetJourneyByProductAsync(string product);
+        Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product);
         // get specific joureny for product
         Task<Journey> GetJourneyByProductAndIdAsync(string product, int id);
 
