@@ -28,6 +28,7 @@ namespace JourneyCreator.Tests.Core
             Assert.True(result.Count == 0);
         }
 
+        //Publisher Tests
         [Fact]
         public void Validate_ReturnsMultipleError_WhenPublisher_IsEmpty()
         {
@@ -69,6 +70,133 @@ namespace JourneyCreator.Tests.Core
             Assert.True(result.Contains("Publisher must be greater than 2 characters"));
         }
 
+        [Fact]
+        public void Validate_ReturnsAnError_WhenPublisher_IsMoreThan30Characters()
+        {
+            var sut = new ValidationService();
+
+            var journey = new Journey
+            {
+                Id = "0",
+                Publisher = "This is a example of a really long publisher name",
+                Product = "Pet",
+                Pages = new List<Page>(),
+                GTMSettings = new GTMSettings()
+            };
+
+            var result = sut.Validate(journey);
+
+            Assert.True(result.Count == 1);
+            Assert.True(result.Contains("Publisher must be less than 30 characters"));
+        }
+
+        [Fact]
+        public void Validate_ReturnsAnError_WhenPublisher_IsWhiteSpace()
+        {
+            var sut = new ValidationService();
+
+            var journey = new Journey
+            {
+                Id = "0",
+                Publisher = " ",
+                Product = "Pet",
+                Pages = new List<Page>(),
+                GTMSettings = new GTMSettings()
+            };
+
+            var result = sut.Validate(journey);
+
+            Assert.True(result.Count == 2);
+            Assert.True(result.Contains("Publisher must not be empty"));
+        }
+
+
+        //Product tests
+        [Fact]
+        public void Validate_ReturnsMultipleError_WhenProduct_IsEmpty()
+        {
+            var sut = new ValidationService();
+
+            var journey = new Journey
+            {
+                Id = "0",
+                Publisher = "James Price",
+                Product = "",
+                Pages = new List<Page>(),
+                GTMSettings = new GTMSettings()
+            };
+
+            var result = sut.Validate(journey);
+
+            Assert.True(result.Count == 2);
+            Assert.True(result.Contains("Product must not be empty"));
+            Assert.True(result.Contains("Product must be greater than 2 characters"));
+        }
+
+        [Fact]
+        public void Validate_ReturnsAnError_WhenProduct_IsLessThan2Characters()
+        {
+            var sut = new ValidationService();
+
+            var journey = new Journey
+            {
+                Id = "0",
+                Publisher = "James Price",
+                Product = "Pe",
+                Pages = new List<Page>(),
+                GTMSettings = new GTMSettings()
+            };
+
+            var result = sut.Validate(journey);
+
+            Assert.True(result.Count == 1);
+            Assert.True(result.Contains("Product must be greater than 2 characters"));
+        }
+
+        [Fact]
+        public void Validate_ReturnsAnError_WhenProduct_IsMoreThan30Characters()
+        {
+            var sut = new ValidationService();
+
+            var journey = new Journey
+            {
+                Id = "0",
+                Publisher = "James Price",
+                Product = "A new Pet product Journey for everyone to see",
+                Pages = new List<Page>(),
+                GTMSettings = new GTMSettings()
+            };
+
+            var result = sut.Validate(journey);
+
+            Assert.True(result.Count == 1);
+            Assert.True(result.Contains("Product must be less than 30 characters"));
+        }
+
+        [Fact]
+        public void Validate_ReturnsAnError_WhenProduct_IsWhiteSpace()
+        {
+            var sut = new ValidationService();
+
+            var journey = new Journey
+            {
+                Id = "0",
+                Publisher = "James Price",
+                Product = " ",
+                Pages = new List<Page>(),
+                GTMSettings = new GTMSettings()
+            };
+
+            var result = sut.Validate(journey);
+
+            Assert.True(result.Count == 2);
+            Assert.True(result.Contains("Product must not be empty"));
+        }
+
+        //Question Tests
+        
+
+
         public static IEnumerable<object[]> InvalidJourneys
         {
             get
@@ -82,19 +210,6 @@ namespace JourneyCreator.Tests.Core
                         {
                             Id = "0",
                             Publisher = "James Price",
-                            Product = "Pet",
-                            Pages = new List<Page>(),
-                            GTMSettings = new GTMSettings()
-                        },
-                        true
-                    },
-                    // invalid publisher - empty string
-                    // Todo: add more invalid publisher scenarios. e.g. just whitespace
-                    new object[] {
-                        new Journey
-                        {
-                            Id = "1",
-                            Publisher = "",
                             Product = "Pet",
                             Pages = new List<Page>(),
                             GTMSettings = new GTMSettings()
