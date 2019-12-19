@@ -22,18 +22,18 @@ namespace JourneyCreator.Api.Services
             return journeys;
         }
 
-        public async Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product)
+        public async Task<Journey> GetJourneyByProductAsync(string product)
         {
-            var journeys = await _journeyRepository.GetJourneyByProductAsync(product);
+            var journey = await _journeyRepository.GetJourneyByProductAsync(product);
 
-            return journeys;
+            return journey;
         }
 
-        public async Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id)
+        public async Task<Journey> GetJourneyByProductAndIdAsync(string product, string id)
         {
-            var journeys = await _journeyRepository.GetJourneyByProductAndIdAsync(product, id);
+            var journey = await _journeyRepository.GetJourneyByProductAndIdAsync(product, id);
 
-            return journeys;
+            return journey;
         }
     }
 }

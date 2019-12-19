@@ -8,8 +8,8 @@ namespace JourneyCreator.Core.Interfaces
     {
         Task<IEnumerable<Journey>> GetLatestJourneyForAllProductsAsync();
 
-        Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product);
+        Task<Journey> GetJourneyByProductAsync(string product);
 
-        Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id);
+        Task<Journey> GetJourneyByProductAndIdAsync(string product, string id);
     }
 }

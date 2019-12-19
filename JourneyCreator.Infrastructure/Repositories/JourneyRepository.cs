@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using JourneyCreator.Core.Interfaces;
@@ -27,20 +28,20 @@ namespace JourneyCreator.Infrastructure.Repositories
             return true;
         }
 
-        public async Task<IEnumerable<Journey>> GetJourneyByProductAndIdAsync(string product, string id)
+        public async Task<Journey> GetJourneyByProductAndIdAsync(string product, string id)
         {
             var sqlQueryText = $"SELECT * FROM c WHERE c.Product = '{product}' AND c.id = '{id}'";
             var journeys = await _ExecuteIteratorQuery(sqlQueryText);
 
-            return journeys;
+            return journeys.FirstOrDefault();
         }
 
-        public async Task<IEnumerable<Journey>> GetJourneyByProductAsync(string product)
+        public async Task<Journey> GetJourneyByProductAsync(string product)
         {
             var sqlQueryText = $"SELECT TOP 1 * FROM c WHERE c.Product = '{product}' ORDER BY c._ts DESC";
             var journeys = await _ExecuteIteratorQuery(sqlQueryText);
 
-            return journeys;
+            return journeys.FirstOrDefault();
         }
 
         public async Task<bool> SaveAsync(Journey journey)
