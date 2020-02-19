@@ -14,8 +14,8 @@ namespace JourneyCreator.Infrastructure.Repositories
 
         public JourneyRepository()
         {
-            var client = new CosmosClient("AccountEndpoint=https://dynamic-journey.documents.azure.com:443/;AccountKey=XCDk51XzPornsqfErlDRpkReuu7IY22ATj4o16xW7SMrWdCrky2OkhM2JhRVGQiCp3wCSkgkolE2gqdTX0f0Dw==;", null);
-            this._container = client.GetContainer("journey", "journeycontainer");
+            var client = new CosmosClient("AccountEndpoint=https://journey-db.documents.azure.com:443/;AccountKey=TJLjMS9a8VyZUfWUxYUxtVY0NklHijxYanuFGijQcjKzCz4CfcI9tScpuCIANsmGS6o81cTULIz2n1ETexak5w==;", null);
+            this._container = client.GetContainer("journey-db", "journeys");
         }
 
 
@@ -53,7 +53,7 @@ namespace JourneyCreator.Infrastructure.Repositories
         {
             //TODO - If exists checks + get partition key saving properly
             return await this._container.CreateItemAsync(journey);
-        }      
+        }
 
         public async Task<IEnumerable<Journey>> GetAsync()
         {
